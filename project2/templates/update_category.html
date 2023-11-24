@@ -1,0 +1,25 @@
+{% include 'public_header.html' %}
+
+<h1>update category</h1>
+<form method="post">
+		<table>
+			<tr>
+				<th>update category</th>
+
+			    <td>
+			    	<select>
+			    	{% for r in data['view_all'] %}
+			    	<option>{{r['cname']}}</option>
+			    	{% endfor %}
+			    	</select>   
+			    </td>
+			</tr>
+			<tr>
+				<td><input type="submit" name="update_cat" value="update"></td>
+			</tr>
+		</table>
+	</form>
+
+{% include 'footer.html' %}
+
+

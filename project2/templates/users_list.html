@@ -1,0 +1,28 @@
+{% include 'public_header.html' %}
+
+
+<h1>Users</h1>
+<table border="2" class=table>
+	<thead>
+		<tr>
+			<th>Firstname</th>
+			<th>Lastname</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Place</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for row in data['view'] %}
+		<tr>
+			<td>{{row['firstname']}}</td>
+			<td>{{row['lastname']}}</td>>
+			<td>{{row['email']}}</td>
+			<td>{{row['phone']}}</td>
+			<td>{{row['place']}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% include 'footer.html' %}

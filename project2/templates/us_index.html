@@ -1,0 +1,33 @@
+{% include 'public_header.html' %}
+	
+<h1>Products</h1>
+
+<table border="2" class="table">
+  <thead>
+    <tr>
+    <th scope="col">Index</th>
+    <th scope="col">image</th>
+      <th scope="col">name</th>
+      <th scope="col">price</th>
+      <th scope="col">category</th>
+      <th scope="col">description</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  	{% for row in data['viewp'] %}
+    <tr>
+      <th>{{row['pid']}}</th>
+      <td><a href="/{{row['img']}}"><img src="/{{row['img']}}" width="100"></a></td>
+      <td>{{row['pname']}}</td>
+      <td>{{row['price']}}</td>
+      <td>{{row['cname']}}</td>
+      <td>{{row['descrp']}}</td>
+      <td><input type="submit" name="add_cart" value="add to cart">
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% include 'footer.html' %}
