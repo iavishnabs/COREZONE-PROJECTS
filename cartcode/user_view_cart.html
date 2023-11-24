@@ -1,0 +1,110 @@
+{% include 'user_header.html' %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+<style>
+   .cart-container {
+    max-width: 600px; /* Increased max-width for two rows */
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping to create two rows */
+  }
+
+  .cart-item {
+   /* flex: 2 2 calc(10px - 20px); *//* Set each item to take 50% width with some spacing */
+    border: 1px solid #ddd;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .cart-image {
+    width: 80px;
+  height: 80px;
+    margin-right: 10px;
+    padding-top: 16px
+  }
+
+  .cart-details {
+    padding-left: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    margin: 0;
+    opacity: 0.7;
+  }
+
+  .total-container {
+    margin-top: 20px;
+    text-align: right;
+  }
+</style>
+<center>
+  <h1>My Cart</h1>
+  <div class="container">
+    <form method="post">
+      <div class="row">
+      {% if data['viewcart'] %}
+      {% for i in data['viewcart'] %}
+       <div class="col-md-4">
+      <div class="card">
+        <div>
+          <img class="cart-image" src="/{{i['p_image']}}">
+        </div>
+        <div class="cart-details">
+          <h3>{{ i['product_name'] }}</h3>
+          <p>
+            <span>Price: </span>
+            <span id="amt">{{ i['price'] }}</span>
+          </p> 
+          <p>
+            <span>Quantity: </span>
+            <a style="text-decoration: none;" class="btn btn-primary btn-sm" href="?actionn=decrease&c_id={{i['cart_id']}}&pro_id={{i['product_id']}}&price={{i['price']}}">-</a>
+            <span style="opacity: .7;">
+              <span id="qty">{{ i['oq'] }}</span>
+            </span>
+            <a style="text-decoration: none;" class="btn btn-primary btn-sm" onclick="" href="?actionn=increase&c_id={{i['cart_id']}}&pro_id={{i['product_id']}}&price={{i['price']}}">+</a>
+          </p>
+          <p>
+            <span>Total Amount: </span>
+            <span id="t_amount">{{ i['oq'] | int * i['price'] | float }}</span>
+          </p>
+        </div>
+        <div>
+          <p><a class="btn btn-success" href="?actionn1=remove&c_id={{i['cart_id']}}">REMOVE</a></p>
+        </div>
+      </div>
+    </div>
+
+      {% endfor %}
+    </div>
+        <div style="margin-right: 150px">
+        <div class="total-container">
+          <h3>Total Amount:</h3>
+          <p><span id="total_amount">{{ total_amount | default(0) }}</span></p>
+          <a class="btn btn-success" href="userpayment?total_amount={{ total_amount | default(0) }}">ORDER</a>
+        </div> 
+    </div>
+    {% else%}
+    <h3>Oops. Your Cart is Empty.</h3>
+    {% endif %}
+    </form>
+    </div>
+
+
+</center>
+
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <img src="assets/img/hero-img.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+{% include 'footer.html' %}
